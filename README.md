@@ -1,29 +1,20 @@
 # vue-axios-client
 
-## Project setup
-```
-npm install
+## Installation
+
+```bash
+npm install vue-axios-client
+# or
+yarn add vue-axios-client
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Usage
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Install the plugin to use it
 
-### Run your tests
-```
-npm run test
-```
+```js
+import axios from 'axios'
+import VueAxiosClient from 'vue-axios-client'
 
-### Lints and fixes files
+Vue.use(VueAxiosClient, { axios })
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
