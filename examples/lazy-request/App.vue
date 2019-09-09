@@ -6,9 +6,9 @@
       @error="errorHandler"
       lazy
     >
-      <template v-slot="{ request, result: { loading, error, data } }">
-        <button @click="lazyRequest(request)" :disabled="loading">
-          {{ loading ? 'Loading...' : 'Load Users' }}
+      <template v-slot="{ request, result: { isLoading, error, data } }">
+        <button @click="lazyRequest(request)" :disabled="isLoading">
+          {{ isLoading ? 'Loading...' : 'Load Users' }}
         </button>
         <div v-if="error" class="error">{{ error }}</div>
         <UsersTable v-else-if="data" :users="data" />

@@ -2,11 +2,12 @@
   <div id="app">
     <AxiosRequest
       :config="require('@/api/getUsers')"
+      :pending-delay="200"
       @success="successHandler"
       @error="errorHandler"
     >
-      <template v-slot="{ result: { loading, error, data } }">
-        <div v-if="loading">Loading...</div>
+      <template v-slot="{ result: { isLoading, error, data } }">
+        <div v-if="isLoading">Loading...</div>
         <div v-else-if="error" class="error">{{ error }}</div>
         <UsersTable v-else-if="data" :users="data" />
       </template>

@@ -27,6 +27,10 @@ export default {
       type: Boolean,
       default: false
     },
+    pendingDelay: {
+      type: [Number, String],
+      default: 200
+    },
     tag: {
       type: String,
       default: 'div'
@@ -52,32 +56,34 @@ export default {
         data: null,
         error: null,
         fullData: null,
-        loading: false
+        isLoading: false
       }
     }
   },
   methods: {
-    async request () {
-      try {
-        this.result.error = null
-        this.result.loading = true
-        this.$emit('loading', this.result.loading)
+    request () {
+      this.result.error = null
+      this.result.isLoading = true
+      this.$emit('loading', this.result.isLoading)
 
-        const response = await this.axiosInstance.request(this.axiosRequestConfig)
-        this.result.data = this.transformData(response.data)
-        this.result.fullData = response.data
-        this.$emit('success', response)
-
-        return response
-      } catch (e) {
-        this.result.error = e
-        this.$emit('error', e)
-
-        throw e
-      } finally {
-        this.result.loading = false
-        this.$emit('loading', this.result.loading)
-      }
+      return new Promise((resolve, reject) => {
+        this.axiosInstance.request(this.axiosRequestConfig)
+          .then((response) => {
+            this.result.data = this.transformData(response.data)
+            this.result.fullData = response.data
+            this.$emit('success', response)
+            resolve(response)
+          })
+          .catch((error) => {
+            this.result.error = error
+            this.$emit('error', error)
+            reject(error)
+          })
+          .finally(() => {
+            this.result.isLoading = false
+            this.$emit('loading', this.result.isLoading)
+          })
+      })
     }
   },
   created () {
