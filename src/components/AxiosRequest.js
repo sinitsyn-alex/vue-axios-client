@@ -11,7 +11,6 @@ export default {
       type: Function
     },
     config: {
-      required: true,
       validator (value) {
         // object or CommonJS module default
         value = value && (value.default || value)
@@ -61,13 +60,12 @@ export default {
     }
   },
   methods: {
-    request () {
+    request (axiosRequestConfig) {
+      const timerId = this.setLoadingTimeout()
       this.result.error = null
-      this.result.isLoading = true
-      this.$emit('loading', this.result.isLoading)
 
       return new Promise((resolve, reject) => {
-        this.axiosInstance.request(this.axiosRequestConfig)
+        this.axiosInstance.request(axiosRequestConfig || this.axiosRequestConfig)
           .then((response) => {
             this.result.data = this.transformData(response.data)
             this.result.fullData = response.data
@@ -80,10 +78,17 @@ export default {
             reject(error)
           })
           .finally(() => {
+            clearTimeout(timerId)
             this.result.isLoading = false
             this.$emit('loading', this.result.isLoading)
           })
       })
+    },
+    setLoadingTimeout () {
+      return setTimeout(() => {
+        this.result.isLoading = true
+        this.$emit('loading', this.result.isLoading)
+      }, +this.pendingDelay)
     }
   },
   created () {

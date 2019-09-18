@@ -2,7 +2,6 @@
   <div id="app">
     <AxiosRequest
       :config="require('@/api/getUsers')"
-      :pending-delay="200"
       @success="successHandler"
       @error="errorHandler"
     >
