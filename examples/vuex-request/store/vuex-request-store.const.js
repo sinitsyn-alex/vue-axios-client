@@ -1,0 +1,12 @@
+const MUTATION_TYPE = {
+  SET_USERS: 'SET_USERS'
+}
+
+const ACTION_TYPE = {
+  GET_USERS: 'GET_USERS'
+}
+
+export {
+  MUTATION_TYPE,
+  ACTION_TYPE
+}

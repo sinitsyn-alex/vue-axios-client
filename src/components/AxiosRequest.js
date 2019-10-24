@@ -62,7 +62,9 @@ export default {
   methods: {
     request (axiosRequestConfig) {
       const timerId = this.setLoadingTimeout()
+      this.result.data = null
       this.result.error = null
+      this.result.fullData = null
 
       return new Promise((resolve, reject) => {
         this.axiosInstance.request(axiosRequestConfig || this.axiosRequestConfig)
