@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import App from './simple-request/App.vue'
 import axios from 'axios'
-import VueAxiosClient from '../src'
+import VueAxiosClient, { AxiosRequest } from '../src'
 
-Vue.use(VueAxiosClient, { axios })
+const vueAxiosClient = new VueAxiosClient({ axios })
+
+Vue.use(vueAxiosClient)
+Vue.component('AxiosRequest', AxiosRequest)
 Vue.config.productionTip = false
 
 new Vue({

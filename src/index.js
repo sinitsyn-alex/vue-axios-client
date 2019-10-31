@@ -1,15 +1,8 @@
-import AxiosRequest from './components/AxiosRequest'
+import VueAxiosClient from './VueAxiosClient'
+import VueAxiosRequestComponent from './components/VueAxiosRequestComponent'
 
-class VueAxiosClient {
-  install (Vue, options) {
-    if (options.axios) {
-      Object.defineProperty(Vue.prototype, '$axios', {
-        get () { return options.axios }
-      })
-    }
-    Vue.component('AxiosRequest', AxiosRequest)
-  }
+export default VueAxiosClient
+
+export {
+  VueAxiosRequestComponent as AxiosRequest
 }
-
-export { AxiosRequest }
-export default new VueAxiosClient()

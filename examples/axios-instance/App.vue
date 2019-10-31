@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <AxiosRequest
+    <axios-request
+      :config="require('@/api/user-service').read()"
       :axios="$options.axios"
-      :config="require('@/api/getUsers')"
       @success="successHandler"
       @error="errorHandler"
     >
@@ -11,7 +11,7 @@
         <div v-else-if="error" class="error">{{ error }}</div>
         <UsersTable v-else-if="data" :users="data" />
       </template>
-    </AxiosRequest>
+    </axios-request>
   </div>
 </template>
 

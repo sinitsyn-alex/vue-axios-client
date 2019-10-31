@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AxiosRequest :config="require('@/api/getUsers')" lazy>
+    <axios-request :config="require('@/api/user-service').read()" lazy>
       <template v-slot="{ request, result: { isLoading, error, data } }">
         <button @click="lazyRequest(request)" :disabled="isLoading">
           {{ isLoading ? 'Loading...' : 'Load Users' }}
@@ -8,7 +8,7 @@
         <div v-if="error" class="error">{{ error }}</div>
         <UsersTable v-else-if="data" :users="data" />
       </template>
-    </AxiosRequest>
+    </axios-request>
   </div>
 </template>
 

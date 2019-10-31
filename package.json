@@ -1,6 +1,6 @@
 {
   "name": "vue-axios-client",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Use Axios with Vue.js",
   "main": "dist/vue-axios-client.umd.js",
   "module": "dist/vue-axios-client.esm.js",

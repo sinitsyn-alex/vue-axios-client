@@ -13,10 +13,14 @@ yarn add vue-axios-client
 Install the plugin to use it
 
 ```js
+import Vue from 'vue'
 import axios from 'axios'
-import VueAxiosClient from 'vue-axios-client'
+import VueAxiosClient, { AxiosRequest } from 'vue-axios-client'
 
-Vue.use(VueAxiosClient, { axios })
+const vueAxiosClient = new VueAxiosClient({ axios })
+
+Vue.use(vueAxiosClient)
+Vue.component('AxiosRequest', AxiosRequest)
 ```
 
 ## API Reference
