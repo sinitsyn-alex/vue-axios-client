@@ -12,7 +12,7 @@
     "build:umd": "rollup --config build/rollup.config.umd.js",
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "yarn lint && yarn build"
   },
   "files": [
     "src",
